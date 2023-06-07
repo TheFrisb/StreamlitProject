@@ -1,0 +1,6 @@
+1. Coupons
+2. Streamlit prompt
+3. Deploy and video
+
+
+

@@ -1,0 +1,203 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+<header>
+    <!-- Header Start -->
+    <div class="header-area header_area">
+        <div class="main-header">
+         <div class="header-bottom header-sticky">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{% url 'shop-home' %}"><img src="{% static 'shop/assets/img/logo/logo.png' %}" alt="Image of a logo"></a>
+            </div>
+            <div class="header-left  d-flex f-right align-items-center desktop">
+                <!-- Desktop menu -->
+                <div class="main-menu f-right d-md-block ">
+                    <nav class=""> 
+                        <ul id="navigation_desktop">    
+                            <li><a href="#services">What we offer?</a></li>                                                                                                                                 
+                            <li><a href="#about_us">About us</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="{% url 'blog-home' %}">Blog</a></li>
+                            <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li>
+                            <!-- Check if the user is logged in or not, to change which button displays. -->
+                            {% if request.user.is_authenticated %}
+                            <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>
+                            {% else %}
+                                <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">Sign in</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>    
+            <div class="header-left  d-flex f-right align-items-center mobile">
+                <!-- Mobile-menu -->
+                <div class="main-menu f-right">
+                    <nav class=""> 
+                        <ul id="navigation_mobile"> 
+                            {% if request.user.is_authenticated %}   
+                            <li><a href="#" class="header-btn text-white rounded" data-toggle="modal" data-target="#loginModal" style="padding:10px!important">My account</a></li>
+                            {% else %}
+                            <li><a href="#" class="header-btn text-white rounded" data-toggle="modal" data-target="#loginModal" style="padding:10px!important">Sign in</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>       
+            <!-- Mobile Menu -->
+            <div class="col-12">
+                <div class="mobile_menu d-block d-lg-none"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+</header>
+
+<!-- Login and Register Modal, also used for getting into the dashboard. -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!-- If logged in display profile -->
+        {% if request.user.is_authenticated %}
+        <div class="modal-header">
+            <h4 class="modal-title">Welcome</h4>
+            <button type="button" class="close p-3" data-dismiss="modal" aria-label="Close" style="font-size:24px;">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="modal-body d-flex flex-column justify-content-center align-items-center" style="min-height:150px">
+            <h3 class="modal-title m-2" id="loginModalLabel">Welcome, {{ user_profile.name }}!</h3>
+            <!-- Credits balance logic -->
+            {% if user_profile.credits_balance > 0 %}
+                <span style="color: #be9278" class="fw-semibold">Credits left: {{ user_profile.credits_balance }}</span>
+            {% else %}
+                <span style="color: #be9278" class="fw-semibold">No credits left</span>
+            {% endif %}
+            <a href="{% url 'dashboard' %}" class="btn btn-primary m-1 rounded standardBtn">Go to dashboard</a>
+            <!-- Change password, hidden with class d-none -->
+            <section id="changePassword_form" class="text-center d-none">
+                <div id="changePasswordMessage" class="m-4 d-none">Successfully changed password</div>
+                <div class="m-4 d-flex justify-content-center align-items-center flex-column">
+                    <label for="current_password">Current password</label>
+                    <input type="password" class="form-control big-input" name="current_password" id="current_password">
+                </div>
+                <div class="m-4 d-flex justify-content-center align-items-center flex-column">
+                    <label for="changed_password1">New password</label>
+                    <input type="password" class="form-control big-input" name="changed_password1" id="changed_password1">
+                </div>
+                <div class="m-4 d-flex justify-content-center align-items-center flex-column">
+                    <label for="changed_password2">New password confirmation</label>
+                    <input type="password" class="form-control big-input" name="changed_password2" id="changed_password2">
+                </div>
+                <div class="m4 d-flex justify-content-center align-items-center flex-column">
+                    <button class="btn btn-outline-secondary" style="padding:8px;font-size:14px;" id="changePasswordBtn">Change password</button>
+                </div>
+                
+
+            </section>
+            
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline-secondary m-2" style="font-size:14px;" id="show_change_password_form_btn">Change password</button>
+            <a href="{% url 'logout_user' %}" class="btn btn-primary" style="padding:6px;">Logout</a>
+        </div>
+        {% else %}
+        <!-- If not logged in display login form -->
+            <section id="loginSection">
+                <div class="modal-header">
+                    <h4 class="modal-title d-flex flex-column">
+                        <span>Login</span>
+                        <span style="color:red" class="d-none modal-error-message"></span>
+                    </h4>
+                    <button type="button" class="close p-3" data-dismiss="modal" aria-label="Close" style="font-size:24px;">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                <div class="modal-body">
+                    <form action="{% url 'login_user'}" method="POST"></form>
+                        {% csrf_token %}
+                        <div class="m-4">
+                            <label for="login_email">E-mail:</label>
+                            <input type="email" class="form-control big-input" name="login_email" id="login_email">
+                        </div>
+                            <div class="m-4">
+                                <label for="login_password">Password:</label>
+                                <input type="password" class="form-control big-input" name="login_password" id="login_password">
+                            </div>
+                            <div class="m-4 d-flex flex-column">
+                                <a href="{% provider_login_url 'google' %}?next=/" class="text-dark rounded fw-semibold p-3 border border-secondary d-flex justify-content-start align-items-center rounded" style="gap:10px;font-weight:500"><img src="{% static 'shop/assets/google.svg' %}" alt="Google logo" width="24" height="24">Sign in with Google</a>
+                                <a href="{% provider_login_url 'facebook' %}?next=/" class="text-dark rounded fw-semibold p-3 border border-secondary d-flex justify-content-start align-items-center rounded mt-4" style="gap:10px;font-weight:500"><img src="{% static 'shop/assets/facebook.svg' %}" alt="Google logo" width="24" height="24">Sign in with Facebook</a>
+                            </div>
+
+                            <div class="m-4 d-flex justify-content-center align-items-center">
+                                <button type="submit" class="btn btn-primary flex-grow-1 standardBtn" id="loginBtn">Login</button>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex flex-column">
+                    <span>Don't have an account?</span>
+                    <span style="color: #be9278; text-decoration:underline; cursor:pointer!important;" class="m-2" id="register-link">Click here to register!</span>
+                </div>
+            </section>
+            <!-- Registration form -->
+            <section id="registerSection" class="d-none">
+                <div class="modal-header">
+                    <h4 class="modal-title d-flex flex-column">
+                        <span>Register</span>
+                        <span style="color:red" class="d-none modal-error-message">No user found</span>
+                    </h4>
+                    <button type="button" class="close p-3" data-dismiss="modal" aria-label="Close" style="font-size:24px;">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                <section id="registerInputs">
+                    <div class="modal-body">
+                        <div class="m-4">
+                            <label for="register_email">E-mail:</label>
+                            <input type="email" class="form-control big-input" name="login_email" id="register_email">
+                        </div>
+                            <div class="m-4">
+                                <label for="register_password1">Password:</label>
+                                <input type="password" class="form-control big-input" name="register_password1" id="register_password1">
+                            </div>
+                            <div class="m-4">
+                                <label for="register_password2">Password again:</label>
+                                <input type="password" class="form-control big-input" name="register_password2" id="register_password2">
+                            </div>
+                            
+                            <div class="m-4 d-flex justify-content-center align-items-center">
+                                <button type="submit" class="btn btn-primary flex-grow-1 standardBtn" id="registerBtn">Register</button>
+                            </div>
+                    </div>
+                </section>
+                <section id="successfulRegister" class="d-none">
+                    <div class="modal-body text-center">
+                        <h2 class="modal-title m-2">We have sent you a confirmation mail at: <span id="registered_email" style="color: #be9278"></span></h2>
+                        <span class="fw-semibold" style="font-size:14px;">Please note that emails may sometimes take 2-5 minutes to arrive.<br>If the email has not yet arrived, please check your spam and junk folders.</span>
+                    </div>
+                </section>
+                
+                <div class="modal-footer d-flex flex-column">
+                    <span>Do you have an account?</span>
+                    <span style="color: #be9278; text-decoration:underline; cursor:pointer!important;" class="m-2" id="login-link">Click here to log in!</span>
+                </div>
+            </section>
+            
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% if notification %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding:20px!important;margin:1rem!important">
+    <strong>{{ notification }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="font-size:24px">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}

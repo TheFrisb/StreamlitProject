@@ -1,0 +1,54 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ title }}</title> <!-- This is the title of the page, passed by context in views! -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'shop/assets/favicon.ico' %}">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'shop/css/bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+    <!-- Block for head scripts to be included -->
+    {% block head_scripts %}{% endblock head_scripts %}
+</head>
+<body>
+    {% csrf_token %}
+    <!-- Website preloader... -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'shop/assets/loader.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Header -->
+    {% include 'shop/includes/header.html' %}
+
+    <!-- Main content -->
+    {% block content %}{% endblock content %}
+
+    <!-- Footer -->
+    {% include 'shop/includes/footer.html' %}
+    <!-- We include here the default JS files we need for every template.. -->
+    <script src="{% static 'shop/js/jquery.js' %}"></script>
+    <script src="{% static 'shop/js/popper.min.js' %}"></script>
+    <script src="{% static 'shop/js/bootstrap.min.js' %}"></script>
+        <!-- JS here -->
+    <script src="{% static 'shop/js/merged_plugins_bundle.js' %}"></script>
+    <script src="{% static 'shop/js/used_plugins/wow.min.js' %}"></script>
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="{% static 'shop/js/plugins.js' %}"></script>
+    <script src="{% static 'shop/js/main.js' %}"></script>
+    {% block scripts %}{% endblock scripts %}
+
+</body>
+</html>

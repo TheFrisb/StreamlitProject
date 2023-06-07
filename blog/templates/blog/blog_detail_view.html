@@ -1,0 +1,145 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <!--? slider Area Start-->
+    <div class="slider-area position-relative">
+      <div class="slider-active">
+        <!-- Single Slider -->
+        <div class="single-slider position-relative hero-overly slider-height2  d-flex align-items-center" data-background="{% static 'shop/assets/img/hero/h1_hero.png' %}">
+          <div class="container">
+           <div class="row">
+             <div class="col-xl-6 col-lg-6">
+              <div class="hero-caption hero-caption2">
+                <img src="{% static 'shop/assets/img/hero/hero-icon.png' %}" alt="" data-animation="zoomIn" data-delay="1s">
+                <h2 data-animation="fadeInLeft" data-delay=".4s">Blog Details</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Left img -->
+        <div class="hero-img hero-img2">
+          <img src="{% static 'shop/assets/img/hero/h2_hero2.png' %}" alt=""  data-animation="fadeInRight" data-transition-duration="5s">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- slider Area End-->
+  <!--? Blog Area Start -->
+  <section class="blog_area single-post-area section-padding">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-8 posts-list">
+      <div class="single-post">
+       <div class="feature-img">
+        <img class="img-fluid" src="{{ post.thumbnail.url }}" alt="">
+      </div>
+      <div class="blog_details">
+        <h2 style="color: #2d2d2d;">{{ post.title }}</h2>
+       <ul class="blog-info-link mt-3 mb-4">
+         <li><a href="#">{{ post.category.name }}</a></li>
+       </ul>
+       <div class="excerpt">
+        {{ post.content2|safe }}
+       </div>
+
+   </div>
+  </div>
+  <div class="navigation-top">
+  <div class="navigation-area">
+    <div class="row">
+     <div
+     class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+     <div class="thumb">
+       <a href="#">
+        <img class="img-fluid" src="assets/img/post/preview.png" alt="">
+      </a>
+    </div>
+    <div class="arrow">
+     <a href="#">
+      <span class="lnr text-white ti-arrow-left"></span>
+    </a>
+  </div>
+{% if previous_post %}
+    <div class="detials">
+        
+    <p>Previous Post</p>
+    <a href="{% url 'blog-detail-view' previous_post.id %}">
+        <h4 style="color: #2d2d2d;">{{ previous_post.truncated_title }}</h4>
+    </a>
+    </div>
+{% endif %}
+  </div>
+  <div
+  class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+  {% if next_post %}
+    <div class="detials">
+        
+    <p>Next Post</p>
+    <a href="{% url 'blog-detail-view' next_post.id %}">
+        <h4 style="color: #2d2d2d;">{{ next_post.truncated_title }}</h4>
+    </a>
+    </div>
+{% endif %}
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  </div>
+  <div class="col-lg-4">
+    <div class="blog_right_sidebar">
+        <aside class="single_sidebar_widget search_widget">
+            <form action="{% url 'blog-search-view' %}" method="GET" >
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder='Search Keyword'
+                        onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Search Keyword'" name="query">
+                        <div class="input-group-append">
+                            <button class="btns" type="button"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                type="submit">Search</button>
+            </form>
+        </aside>
+        <aside class="single_sidebar_widget post_category_widget">
+            <h4 class="widget_title" style="color: #2d2d2d;">Categories</h4>
+            <ul class="list cat-list">
+                <li>
+                    {% for category in blog_categories %}
+                        <a href="{% url 'blog-category-view' category.slug %}" class="d-flex" style="gap:6px">
+                            <p>{{ category.name }}</p>
+                            <p> ({{ category.get_number_of_posts }} posts)</p>
+                        </a>
+                    {% endfor %}
+                </li>
+            </ul>
+        </aside>
+        <aside class="single_sidebar_widget popular_post_widget">
+            <h3 class="widget_title" style="color: #2d2d2d;">Recent Post</h3>
+            {% for post in recent_posts %}
+                <div class="media post_item">
+                    <img src="{{ post.thumbnail.url }}" alt="post" class="w-25">
+                    <div class="media-body w-75">
+                        <a href="{% url 'blog-detail-view' post.id %}">
+                            <h3 style="color: #2d2d2d;">{{ post.truncated_title }}</h3>
+                        </a>
+                        <p>{{ post.created_at|date:"F d, Y" }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </aside>
+
+
+    </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  <!-- Blog Area End -->
+  </main>
+{% endblock content %}

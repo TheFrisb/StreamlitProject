@@ -1,0 +1,86 @@
+{% load static %}
+<!-- Contact form -->
+<div class="container pb-5" >
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="rounded p-4 col-12 col-md-8 col-lg-4 d-flex align-items-center justify-content-center flex-column " style="gap:12px;border: 1px solid #b6876b"">
+            <h3 class="w-100">Contact form</h3>
+            <input type="email" placeholder="Enter your e-mail" class="w-100 form-control big-input" style="font-size:14px; border:1px solid #b6876b" id="contact_message_from">
+            <textarea name="contact_message_text"  cols="30" rows="10" placeholder="Enter your message" class="w-100 form-control" style="font-size:14px; border:1px solid #b6876b" id="contact_message_text"></textarea>
+            <button class="w-100 btn btn-primary rounded" id="send_contact_message">Send</button>
+
+        </div>
+    </div>
+</div>
+<footer id="contact_us">
+    <div class="footer-wrapper section-bg2 pl-100"  data-background="{% static 'shop/assets/img/gallery/footer-bg.png' %}">
+        <!-- Footer Start-->
+        <div class="footer-area footer-padding">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="single-footer-caption mb-30">
+                                <!-- logo -->
+                                <div class="footer-logo mb-35">
+                                    <a href="#"><img src="{% static 'shop/assets/img/logo/logo2_footer.png' %}" alt="Logo"></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p>Lorem ipsum dolor sit amet, 
+                                        consectetur adipiscing.</p>
+                                    </div>
+                                    <ul class="mb-40">
+                                        <li class="number"><a href="#">(80) 783 367-3904</a></li>
+                                        <li class="number2"><a href="#">(80) 783 367-3904</a></li>
+                                    </ul>
+                                </div>
+                                <!-- social -->
+                                <div class="footer-social">
+                                    <a href="#"><i class="fab fa-twitter"></i></a><!-- Add link to twitter or remove-->
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a><!-- Add link to facebook or remove-->
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a><!-- Add link to pinterest or remove -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Our solutions</h4>
+                                <ul>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-right">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+                                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+    
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Footer End-->
+          <!-- Map -->
+          <div class="map-area">
+            <img src="{% static 'shop/assets/img/gallery/map.png' %}" alt="Image of a map">
+        </div>
+    </div>
+    </footer>

@@ -1,0 +1,320 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block head_scripts %}
+    <!-- Include stripe checkout -->
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock head_scripts %}
+
+{% block content %}
+<main>
+<!--? slider Area Start-->
+<div class="slider-area  position-relative w-100">
+    <div class="slider-active">
+        <!-- Single Slider -->
+        <div class="single-slider position-relative hero-overly slider-height  d-flex align-items-center" data-background="{% static 'shop/assets/img/hero/h1_hero.png' %}">
+            <div class="container">
+             <div class="row">
+                 <div class="col-xl-6 col-lg-6">
+                    <div class="hero-caption">
+                        <img class="rotateme" src="{% static 'shop/assets/img/hero/hero-icon.png' %}" alt="Icon for the hero image" data-animation="zoomIn" data-delay="1s">
+                        <h1 data-animation="fadeInLeft" data-delay=".4s">We make cloths  that suit you</h1>
+                        <p data-animation="fadeInLeft" data-delay=".6s">TLorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Suspendisse varius enim in eros elementum tristique. Duis 
+                        cursus, mi quis viverra ornare.</p>
+                        <!-- Hero Btn -->
+                        <a href="#" class="btn"  data-animation="fadeInLeft" data-delay=".8s" >Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Left img -->
+        <div class="hero-img">
+            <img src="{% static 'shop/assets/img/hero/h1_hero1.png' %}" alt="hero image of the website"  data-animation="fadeInRight" data-transition-duration="5s">
+        </div>
+    </div>
+    <!-- Single Slider -->
+    <div class="single-slider position-relative hero-overly slider-height  d-flex align-items-center" data-background="{% static 'shop/assets/img/hero/h1_hero.png' %}">
+        <div class="container">
+         <div class="row">
+             <div class="col-xl-6">
+                <div class="hero-caption">
+                    <img class="rotateme" src="{% static 'shop/assets/img/hero/hero-icon.png' %}" alt="Rotating icon in the hero image of the website" data-animation="zoomIn" data-delay="1s">
+                    <h1 data-animation="fadeInLeft" data-delay=".4s">We make cloths  that suit you</h1>
+                    <p data-animation="fadeInLeft" data-delay=".6s">TLorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Suspendisse varius enim in eros elementum tristique. Duis 
+                    cursus, mi quis viverra ornare.</p>
+                    <!-- Hero Btn -->
+                    <a href="#" class="btn"  data-animation="fadeInLeft" data-delay=".8s" >Our Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Left img -->
+    <div class="hero-img">
+        <img src="{% static 'shop/assets/img/hero/h1_hero1.png' %}" alt="Another image on top of the hero image"  data-animation="fadeInRight" data-transition-duration="5s">
+    </div>
+</div>
+</div>
+</div>
+<!-- slider Area End-->
+<!--? Clients Offers Start -->
+<div class="clients-area section-padding40">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".2s" >
+                <div class="offers-img">
+                    <img src="{% static 'shop/assets/img/gallery/offers1.png' %}" alt="Image of offer 1">
+                </div>
+                <div class="offers-cap">
+                    <span>1</span>
+                    <h3><a href="#services">Tailor Sweing</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".4s">
+                <div class="offers-img">
+                    <img src="{% static 'shop/assets/img/gallery/offers2.png' %}" alt="Image of offer 2">
+                </div>
+                <div class="offers-cap">
+                    <span>2</span>
+                    <h3><a href="#services">Mesurement</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="single-offers mb-50 wow fadeInUp" data-wow-delay=".6s">
+                <div class="offers-img">
+                    <img src="{% static 'shop/assets/img/gallery/offers3.png' %}" alt="Image of offer 3">
+                </div>
+                <div class="offers-cap">
+                    <span>3</span>
+                    <h3><a href="#services">Ready-made</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Clients Offers End -->
+<!--? Visit Our Tailor Start -->
+<section class="visit-tailor-area fix" id="about_us">
+<!--Right Contents  -->
+<div class="tailor-offers"></div>
+<!-- left Contents -->
+<div class="tailor-details">
+    <h2>About our<br>tailor house</h2>
+    <p class="pera-top">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+    <p class="pera-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        Suspendisse varius enim in eros elementum tristique. Duis 
+    cursus, mi quis viverra ornare.</p>
+    <a href="#" class="btn">More About Us</a>
+</div>
+</section>
+<!-- Visit Our Tailor End -->
+<!--? Services Area Start -->
+<section class="categories-area section-padding40" id="services">
+<div class="container">
+    <!-- section Tittle -->
+    <div class="row justify-content-center" >
+        <div class="col-xl-6 col-lg-6 col-md-7 col-sm-9">
+            <div class="section-tittle text-center mb-60">
+                <h2>Why use our service?</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                <div class="cat-icon">
+                    <img src="{% static 'shop/assets/img/icon/services1.svg' %}" alt="Image of service 1">
+                </div>
+                <div class="cat-cap">
+                    <h5>Tailor Sweing</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                <div class="cat-icon">
+                    <img src="{% static 'shop/assets/img/icon/services2.svg' %}" alt="Image of service 2">
+                </div>
+                <div class="cat-cap">
+                    <h5>Tailor Sweing</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                <div class="cat-icon">
+                    <img src="{% static 'shop/assets/img/icon/services3.svg' %}" alt="Image of service 3">
+                </div>
+                <div class="cat-cap">
+                    <h5>Tailor Sweing</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                <div class="cat-icon">
+                    <img src="{% static 'shop/assets/img/icon/services4.svg' %}" alt="Icon of a cat">
+                </div>
+                <div class="cat-cap">
+                    <h5>Tailor Sweing</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section id="pricing" class="pricing-content section-padding">
+	<div class="container">					
+		<div class="section-title text-center">
+			<h2>Pricing Plans</h2>
+			<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-4 d-flex justify-content-center align-items-center">
+                    <input type="text" placeholder="Coupon code" name="coupon_code" class="form-control big-input" id="coupon_code">
+                    <button class="btn btn-primary" style="height:36px!important" id="apply_coupon">Apply</button>
+                </div>
+            </div>	
+		</div>	
+        		
+		<div class="row text-center">	
+            <!-- Loop over available products -->
+            {% for product in products %}								
+                <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp productTier" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0"  style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
+                    
+                    <div class="pricing_design">
+                        <div class="single-pricing">
+                            <div class="price-head">		
+                                <h2>{{ product.name }}</h2>
+                                <h1>$<span class="product_card_price">{{ product.price }}</span></h1>
+                                <span>for {{ product.use_count }} uses</span>
+                            </div>
+                            <!-- <ul>
+                                <li><b>15</b> website</li>
+                                <li><b>50GB</b> Disk Space</li>
+                                <li><b>50</b> Email</li>
+                                <li><b>50GB</b> Bandwidth</li>
+                                <li><b>10</b> Subdomains</li>
+                                <li><b>Unlimited</b> Support</li>
+                            </ul> -->
+                            <div class="pricing-price">
+                                
+                            </div>
+                            <!-- Allow user to buy if he is logged in, otherwise if he clicks on the button show him the log in modal. -->
+                            {% if request.user.is_authenticated %}
+                            <form action="{% url 'create_checkout_session' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <button class="price_btn border-0 buyBtn" style="cursor: pointer" data-product-id="{{ product.id }}">Order Now</button>
+                            </form>
+                            {% else %}
+                            <button class="price_btn border-0 loginPromtBtn" style="cursor: pointer">Order Now</button>
+                            {% endif %}
+
+                            
+                        </div>
+                    </div>
+
+                    
+                </div><!--- END COL -->	
+            {% endfor %}	  
+		</div><!--- END ROW -->
+	</div><!--- END CONTAINER -->
+</section>
+<!--? Testimonial Area Start -->
+<section class="testimonial-area testimonial-padding fix">
+<div class="container">
+    <div class="row align-items-center justify-content-center">
+        <div class=" col-lg-9">
+            <div class="about-caption pb-bottom">
+                <!-- Testimonial Start -->
+                <div class="h1-testimonial-active dot-style">
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial position-relative">
+                        <div class="testimonial-caption">
+                            <img src="{% static 'shop/assets/img/icon/quotes-sign.png' %}" alt="Icon of quotes" class="quotes-sign">
+                            <p>Brook presents your services with flexible, convenient and cdpose layouts. You can select your favorite layouts & elements for cular ts with unlimited ustomization possibilities. Pixel-perfect replica;ition of thei designers ijtls intended csents your se.</p>
+                        </div>
+                        <!-- founder -->
+                        <div class="testimonial-founder d-flex align-items-center">
+                            <div class="founder-img">
+                                <img src="{% static 'shop/assets/img/icon/testimonial.png' %}" alt="Testimonial">
+                            </div>
+                            <div class="founder-text">
+                                <span>Robart Brown</span>
+                                <p>Creative designer at Colorlib</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial position-relative">
+                        <div class="testimonial-caption">
+                            <img src="{% static 'shop/assets/img/icon/quotes-sign.png' %}" alt="Icon of end of quotes" class="quotes-sign">
+                            <p>Brook presents your services with flexible, convenient and cdpose layouts. You can select your favorite layouts & elements for cular ts with unlimited ustomization possibilities. Pixel-perfect replica;ition of thei designers ijtls intended csents your se.</p>
+                        </div>
+                        <!-- founder -->
+                        <div class="testimonial-founder d-flex align-items-center">
+                            <div class="founder-img">
+                                <img src="{% static 'shop/assets/img/icon/testimonial.png' %}" alt="Testimonial">
+                            </div>
+                            <div class="founder-text">
+                                <span>Robart Brown</span>
+                                <p>Creative designer at Colorlib</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial End -->
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!--? Testimonial Area End -->
+<!--? instagram-social start -->
+<section class="instagram-area fix pb-bottom">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10">
+            <div class="section-tittle text-center mb-80">
+                <h2>Follow us on Instagram</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="single-instagram mb-30">
+                <img src="{% static 'shop/assets/img/gallery/insta1.png' %}" alt="Image of a person">
+                <a href="#"><i class="ti-instagram"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="single-instagram">
+                <img src="{% static 'shop/assets/img/gallery/insta2.png' %}" alt="Image of a person">
+                <a href="#"><i class="ti-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<!-- instagram-social End -->
+
+    
+
+</main>
+
+{% endblock content %}
