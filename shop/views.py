@@ -44,7 +44,7 @@ def streamlit_dashboard(request):
         userProfile.streamlit_token_created_at = timezone.now()
         userProfile.save()
 
-        return redirect('http://192.168.0.106:8501/?user=' + str(userProfile.streamlit_token))
+        return redirect('http://192.168.0.106:8501/?user=' + str(userProfile.streamlit_token)) #change this to streamlit url in production or store it as .env file
     else:
         pass
 

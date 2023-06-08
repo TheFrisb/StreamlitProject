@@ -188,4 +188,9 @@ EMAIL_USE_SSL = False # add ssl
 DEFAULT_FROM_EMAIL = config('default_from_mail')
 
 
+CRONJOBS = [ # cron job to remove expired tokens
+    ('0 * * * *', 'shop.cron.remove_tokens'),
+]
+
+
 
