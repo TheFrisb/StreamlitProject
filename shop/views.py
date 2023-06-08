@@ -44,7 +44,7 @@ def streamlit_dashboard(request):
         userProfile.streamlit_token_created_at = timezone.now()
         userProfile.save()
 
-        return redirect('http://192.168.0.106:8501/?user=' + str(userProfile.streamlit_token)) #change this to streamlit url in production or store it as .env file
+        return redirect(config('STREAMLIT_URL') + '?user=' + str(userProfile.streamlit_token)) #change this to streamlit url in production or store it as .env file
     else:
         pass
 
@@ -190,8 +190,8 @@ def create_checkout_session(request): #
                 },
             ],
                 mode='payment',
-                success_url='http://127.0.0.1:8000/',
-                cancel_url='http://127.0.0.1:8000/',
+                success_url='http://127.0.0.1:8000/', # change this to home
+                cancel_url='http://127.0.0.1:8000/', #change this to home
                 customer_email=email,
                 payment_intent_data={
                                         'metadata': {
