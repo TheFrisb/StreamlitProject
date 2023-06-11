@@ -32,7 +32,5 @@ def main():
 
         submit_button(user_token)
 
-app = main() # for gunicorn
-
 if __name__ == '__main__':
-    app.run()
+    main()
