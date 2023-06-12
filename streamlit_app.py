@@ -32,6 +32,5 @@ def main():
 
         submit_button(user_token)
 
-
 if __name__ == '__main__':
     main()
