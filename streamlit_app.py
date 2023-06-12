@@ -27,7 +27,7 @@ def main():
         st.title("You must be logged in to access this page!")
         st.write("---")
     else:
-        st.title("Hello world")
+        st.title("Hello world" + user_token)
         st.write("---")
 
         submit_button(user_token)
