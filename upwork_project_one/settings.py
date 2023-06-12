@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
+#from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,7 +54,7 @@ INSTALLED_APPS = [
 #SITE_ID = 1
 SOCIALACCOUNT_LOGIN_ON_GET=True 
 '''
-    SOCIALACCOUNT_PROVIDERS IS USED TO CONFIGURE SOCIAL ACCOUNTS
+    SOCIALACCOUNT_PROVIDERS IS USED TO os.environ.getURE SOCIAL ACCOUNTS
 '''
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -179,13 +179,13 @@ CKEDITOR_CONFIGS = { # add ckeditor config
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # add email backend
-EMAIL_HOST = config('smtp_host') # add smtp host
+EMAIL_HOST = os.environ.get('smtp_host') # add smtp host
 EMAIL_PORT = 2525 # add smtp port
-EMAIL_HOST_USER = config('smtp_user') # add smtp user
-EMAIL_HOST_PASSWORD = config('smtp_password') # add smtp password
+EMAIL_HOST_USER = os.environ.get('smtp_user') # add smtp user
+EMAIL_HOST_PASSWORD = os.environ.get('smtp_password') # add smtp password
 EMAIL_USE_TLS = True # add tls
 EMAIL_USE_SSL = False # add ssl
-DEFAULT_FROM_EMAIL = config('default_from_mail')
+DEFAULT_FROM_EMAIL = os.environ.get('default_from_mail')
 
 
 CRONJOBS = [ # cron job to remove expired tokens
