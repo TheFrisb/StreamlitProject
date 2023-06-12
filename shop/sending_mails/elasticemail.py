@@ -3,6 +3,7 @@ from decouple import config
 
 
 
+
 def format_email_html_content(title, html_content): # this function formats the html content of the email and makes it html compliant
     valid_html = '''
                 <!DOCTYPE html>
