@@ -224,7 +224,6 @@ def create_checkout_session(request): #
 
 
 # This is your Stripe CLI webhook secret for testing your endpoint locally.
-# endpoint_secret = 'whsec_1eb1bcc9261174ef99d1e2db0326857e0244cfbe18b558edd823aa4d02cdf6ad' # this is the webhook secret, it is used to verify that the webhook is from stripe
 
 @csrf_exempt
 def stripe_webhook(request):
