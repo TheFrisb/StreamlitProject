@@ -56,7 +56,14 @@ def register_user(request): # this is the view that serves the register page
         password = request.POST.get('password') # get the password from the form
         # make username from email but make it unique
         username = email.split('@')[0] + '_' + str(uuid.uuid4())[:8] # this is the username and made unique by adding a random string to the end
-        print(username)
+      
+        
+        existing_user = User.objects.filter(email=email).first() # check for existing user
+
+        if existing_user:
+            print(existing_user)
+            return JsonResponse({'status': 'Email existing!'}, status=404)
+
 
         registration_link = request.build_absolute_uri() + 'confirm/' + str(uuid.uuid4()) + '/' # this is the registration link that will be sent to the user's email
         new_user = User.objects.create_user(username=username, email=email, password=password, is_active=False) # create a new user object
@@ -67,8 +74,11 @@ def register_user(request): # this is the view that serves the register page
             elasticemail.send_user_confirmation_mail(new_user, link_ob) # send the user a confirmation email
             print('Email sent!')
         except:
-            print('Email could not be sent!')
-            pass
+            print('Mail failed')
+            link_ob.delete()
+            new_user.delete()
+            return JsonResponse({'status': 'Mail limit reached!'}, status=401)
+        
         return JsonResponse({'status': 'success'}, status=201)
     else:
         return JsonResponse({'status': 'Wrong request!'}, status=400)
@@ -139,22 +149,6 @@ def change_password(request): # this is the view that changes the password of th
         return JsonResponse({'status': 'Wrong request!'}, status=400) # if the request is not a POST request, return a 400 error
     
 
-def buy_product(request): # this is the view that handles the buying of a product
-    if request.method == 'POST':
-
-        if request.user.is_authenticated:
-            user = request.user
-            product_id = request.POST.get('product_id')
-            product = Product.objects.get(id=product_id)
-            user.credits += product.use_count
-            user.notification = 'You have bought ' + product.name  + ' and now have ' + str(user.credits) + ' credits!'   
-            user.save()
-            return JsonResponse({'status': 'success'}, status=200)
-            
-        else:
-            return JsonResponse({'status': 'User not authenticated!'}, status=401)
-    else:
-        return JsonResponse({'status': 'Wrong request!'}, status=400)
 
 
 
@@ -179,7 +173,7 @@ def create_checkout_session(request): #
                 line_items=[
                 {
                     'price_data': {
-                        'currency': 'usd',
+                        'currency': 'eur',
                         'product_data': {
                             'name': product.name,
                             'description': 'Enables you ' + str(product.use_count) + ' uses of the app',

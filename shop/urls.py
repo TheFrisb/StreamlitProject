@@ -17,7 +17,6 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout_user'), #
     path('change-password/', views.change_password, name='change_password'),
     path('get-streamlit-access/', views.streamlit_dashboard, name='dashboard'),
-    path('buy-product/', views.buy_product, name='buy_product'),
     path('checkout-session/', views.create_checkout_session, name='create_checkout_session'),
     path('stripe-webhook/', views.stripe_webhook, name='stripe_webhook'),
     path('send-contact-message/', views.send_contact_message, name='send_contact_message'),

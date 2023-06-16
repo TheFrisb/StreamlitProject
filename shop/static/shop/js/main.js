@@ -472,7 +472,15 @@ $(document).on('click', '#registerBtn', function (e) {
       $("#successfulRegister").removeClass('d-none');
     },
     error: function (data) {
-      message.html('Email already exists')
+      let status_code = parseInt(data.status)
+      console.log(status_code)
+      if(status_code == 404){
+        message.html('Email already exists')
+      }
+      else if(status_code == 401){
+        message.html('Our servers are overloaded today! Please try again tomorrow')
+      }
+      
       message.removeClass('d-none');
     }
   })
@@ -606,5 +614,9 @@ $(document).on("click", "#apply_coupon", function(e){
       }
     })
 
-})
+});
+});
+
+$(function(){
+  $('.selectpicker').selectpicker();
 });

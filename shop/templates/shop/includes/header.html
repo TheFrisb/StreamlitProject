@@ -17,14 +17,29 @@
                 <div class="main-menu f-right d-md-block ">
                     <nav class=""> 
                         <ul id="navigation_desktop">    
-                            <li><a href="#services">What we offer?</a></li>                                                                                                                                 
-                            <li><a href="#about_us">About us</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="{% url 'shop-home' %}#services">What we offer?</a></li>   
+                            <li><a href="{% url 'shop-home' %}#pricing">Pricing</a></li>                                                                                                                              
+                            <li><a href="{% url 'shop-home' %}#about_us">About us</a></li>               
                             <li><a href="{% url 'blog-home' %}">Blog</a></li>
+                            <li><div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0!important;background-color:#fff!important;color:#101a31!important;">
+                                  Select-language
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="#">English</a>
+                                  <a class="dropdown-item" href="#">Spanish</a>
+                                </div>
+                              </div></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li>
                             <!-- Check if the user is logged in or not, to change which button displays. -->
                             {% if request.user.is_authenticated %}
-                            <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>
+                                {% if user_profile.credits_balance > 0 %}
+                                <li><a href="{% url 'dashboard' %}" target="_blank" class="header-btn text-white gotoDashboardHeadernBtn">Go to dashboard</a></li>
+                                {% else %}
+                                <li><a href="{% url 'shop-home' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                {% endif %}
+                                <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>
                             {% else %}
                                 <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">Sign in</a></li>
                             {% endif %}
@@ -75,10 +90,12 @@
             <!-- Credits balance logic -->
             {% if user_profile.credits_balance > 0 %}
                 <span style="color: #be9278" class="fw-semibold">Credits left: {{ user_profile.credits_balance }}</span>
+                <a href="{% url 'dashboard' %}" target="_blank" class="btn btn-primary m-1 rounded standardBtn">Go to dashboard</a>
             {% else %}
-                <span style="color: #be9278" class="fw-semibold">No credits left</span>
+                <span style="color: #be9278" class="fw-semibold">You can not see the dashboard please buy a plan</span>
+                <a href="{% url 'shop-home' %}#pricing" class="btn btn-primary m-1 rounded standardBtn">Buy plan</a>
             {% endif %}
-            <a href="{% url 'dashboard' %}" class="btn btn-primary m-1 rounded standardBtn">Go to dashboard</a>
+            
             <!-- Change password, hidden with class d-none -->
             <section id="changePassword_form" class="text-center d-none">
                 <div id="changePasswordMessage" class="m-4 d-none">Successfully changed password</div>

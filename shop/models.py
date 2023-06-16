@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class Product(models.Model): # this is a model that will be used to store product information
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField()
     use_count = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True) 
     updated_at = models.DateTimeField(auto_now=True)

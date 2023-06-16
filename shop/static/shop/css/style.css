@@ -12,6 +12,9 @@ html{
         display:none!important;
     }
 }
+.gotoDashboardHeadernBtn{
+    background-color:#005affee!important;
+}
 .pricing-content{position:relative;}
 .pricing_design{
     position: relative;

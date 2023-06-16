@@ -1,6 +1,6 @@
 {% load static %}
 <!-- Contact form -->
-<div class="container pb-5" >
+<div class="container pb-5" id="main-contact-form">
     <div class="row d-flex align-items-center justify-content-center">
         <div class="rounded p-4 col-12 col-md-8 col-lg-4 d-flex align-items-center justify-content-center flex-column " style="gap:12px;border: 1px solid #b6876b"">
             <h3 class="w-100">Contact form</h3>
@@ -48,11 +48,11 @@
                             <div class="footer-tittle">
                                 <h4>Our solutions</h4>
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{% url 'shop-home' %}#services">What we offer?</a></li>                                                                                                                                 
+                                    <li><a href="{% url 'shop-home' %}#about_us">About us</a></li>
+                                    <li><a href="{% url 'shop-home' %}#pricing">Pricing</a></li>
+                                    <li><a href="{% url 'blog-home' %}">Blog</a></li>
+                                    <li><a href="{% url 'blog-home' %}#main-contact-form">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
