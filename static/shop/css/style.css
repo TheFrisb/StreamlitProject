@@ -2,6 +2,19 @@
 html{
     scroll-behavior: smooth!important;
 }
+@media(min-width:768px){
+    .mobile{
+        display:none!important;
+    }
+}
+@media(max-width:768px){
+    .desktop{
+        display:none!important;
+    }
+}
+.gotoDashboardHeadernBtn{
+    background-color:#005affee!important;
+}
 .pricing-content{position:relative;}
 .pricing_design{
     position: relative;

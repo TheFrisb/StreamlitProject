@@ -472,7 +472,15 @@ $(document).on('click', '#registerBtn', function (e) {
       $("#successfulRegister").removeClass('d-none');
     },
     error: function (data) {
-      message.html('Email already exists')
+      let status_code = parseInt(data.status)
+      console.log(status_code)
+      if(status_code == 404){
+        message.html('Email already exists')
+      }
+      else if(status_code == 401){
+        message.html('Our servers are overloaded today! Please try again tomorrow')
+      }
+      
       message.removeClass('d-none');
     }
   })
@@ -520,23 +528,33 @@ $(document).on('click', '#changePasswordBtn', function (e) {
     })
 
 });
+$(document).on('click', '#send_contact_message', function (e) {
+    let from_mail = $('#contact_message_from').val();
+    let message = $('#contact_message_text').val();
+    console.log(from_mail)
+    console.log(message)
+    
 
-// $(document).on('click', '.buyBtn', function (e) {
-//     let button = $(this);
-//     let product_id = parseInt($(this).data('product-id'));
+    $.ajax({
+      url: 'send-contact-message/',
+      type: 'POST',
+      data: {
+        from_mail: from_mail,
+        message: message,
+        csrfmiddlewaretoken: csrfmiddlewaretoken,
+      },
+      success: function (data) {
+        $('#contact_message_from').val('');
+        $('#contact_message_text').val('Message sent successfully');
+      }
+    })
 
-//     $.ajax({
-//       url: 'buy-product/',
-//       type: 'POST',
-//       data: {
-//         product_id: product_id,
-//         csrfmiddlewaretoken: csrfmiddlewaretoken,
-//       },
-//       success: function (data) {
-//         location.reload();
-//       }
-//     })
-// });
+});
+
+$(document).on('click', '.loginPromtBtn', function (e) {
+    // show login modal
+    $('#loginModal').modal('show');
+});
 
 
 $(document).on('click', '#show_change_password_form_btn', function (e) {
@@ -565,5 +583,40 @@ $(document).on("click", '#login-link', function (e) {
   $('#loginSection').removeClass('d-none');
 });
 
+$(document).on("click", "#apply_coupon", function(e){
+    e.preventDefault();
+    let coupon_code = $("#coupon_code").val()
+    if(coupon_code == ''){
+      $("#coupon_code").val("Input can't be empty.");
+      return;
+    }
 
+    $.ajax({
+      url: 'apply-coupon/',
+      type: 'POST',
+      data: {
+        'coupon_name': coupon_code,
+        csrfmiddlewaretoken: csrfmiddlewaretoken,
+      },
+      success: function (data) {
+        $("#coupon_code").val('Coupon applied.')
+        $(".product_card_price").each(function (index){
+          let discount = parseFloat(data.discount);
+          let price = parseFloat($(this).text());
+          let updated_price = price - (price * discount);
+          $(this).html(updated_price)
+
+
+        })
+      },
+      error: function (data) {
+        $("#coupon_code").val('No such coupon.')
+      }
+    })
+
+});
+});
+
+$(function(){
+  $('.selectpicker').selectpicker();
 });
