@@ -261,7 +261,6 @@ def stripe_webhook(request):
 
         user_profile = UserProfile.objects.get(user__id=django_user_id)
         product = Product.objects.get(id=product_id)
-        user_profile.credits_balance += product.use_count
         user_profile.notification = f'Purchase failed! Possible reason: {error_message}'
         user_profile.save()
         print("Failed: ", intent['id']), error_message
