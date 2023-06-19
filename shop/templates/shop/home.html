@@ -317,3 +317,25 @@
 </main>
 
 {% endblock content %}
+{% block scripts %}
+<script>
+    $("#goToServices").click(function(e){
+  e.preventDefault();
+  $([document.documentElement, document.body]).animate({
+      scrollTop: $("#services").offset().top - 40
+  }, 50);
+});
+$("#goToPricing").click(function(e){
+  e.preventDefault();
+  $([document.documentElement, document.body]).animate({
+      scrollTop: $("#pricing").offset().top - 40
+  }, 50);
+});
+$("#goToAboutUs").click(function(e){
+  e.preventDefault();
+  $([document.documentElement, document.body]).animate({
+      scrollTop: $("#about_us").offset().top - 95
+  }, 50);
+});
+</script>
+{% endblock scripts %}

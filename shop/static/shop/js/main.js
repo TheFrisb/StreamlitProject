@@ -615,8 +615,9 @@ $(document).on("click", "#apply_coupon", function(e){
     })
 
 });
+
+
+
+
 });
 
-$(function(){
-  $('.selectpicker').selectpicker();
-});
