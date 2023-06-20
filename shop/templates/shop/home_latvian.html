@@ -2,7 +2,49 @@
 {% load static %}
 
 {% block head_scripts %}
-  <!-- Include stripe checkout -->
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+      // Check if there is a hash in the URL
+      if (window.location.hash) {
+        var target = document.querySelector(window.location.hash);
+
+        // Scroll to the target element
+        if (target) {
+          scrollToElement(target);
+        }
+      }
+
+      // Intercept link clicks
+      var links = document.querySelectorAll('a');
+      links.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          var href = link.getAttribute('href');
+
+          // Check if the href is a hash link
+          if (href && href.startsWith('#')) {
+            var target = document.querySelector(href);
+
+            // Scroll to the target element
+            if (target) {
+              event.preventDefault(); // Prevent the default anchor behavior
+
+              scrollToElement(target);
+            }
+          }
+        });
+      });
+
+      function scrollToElement(element) {
+        var offset = -95; // Adjust the offset as needed
+
+        window.scrollTo({
+          top: element.offsetTop + offset,
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
+    <!-- Include stripe checkout -->
     <script src="https://js.stripe.com/v3/"></script>
 {% endblock head_scripts %}
 
@@ -18,10 +60,8 @@
                  <div class="col-xl-6 col-lg-6">
                     <div class="hero-caption">
                         <img class="rotateme" src="{% static 'shop/assets/img/hero/hero-icon.png' %}" alt="Icon for the hero image" data-animation="zoomIn" data-delay="1s">
-                        <h1 data-animation="fadeInLeft" data-delay=".4s">We make cloths  that suit you</h1>
-                        <p data-animation="fadeInLeft" data-delay=".6s">TLorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Suspendisse varius enim in eros elementum tristique. Duis 
-                        cursus, mi quis viverra ornare.</p>
+                        <h1 data-animation="fadeInLeft" data-delay=".4s">THIS IS LATVIAN HERE</h1>
+                        <p data-animation="fadeInLeft" data-delay=".6s">latvian stuff..</p>
                         <!-- Hero Btn -->
                     </div>
                 </div>
@@ -337,27 +377,5 @@ $("#goToAboutUs").click(function(e){
       scrollTop: $("#about_us").offset().top - 95
   }, 50);
 });
-$(window).on('load', function () {
-    var urlHash = window.location.hash;
-    
-    if (urlHash == '#goToServices'){
-        console.log('services')
-        $([document.documentElement, document.body]).animate({
-            scrollTop: $("#services").offset().top - 120
-        }, 50);
-    }
-    else if(urlHash == '#goToPricing'){
-        console.log('pricing')
-        $([document.documentElement, document.body]).animate({
-            scrollTop: $("#pricing").offset().top - 120
-        }, 50);
-    }
-    else if(urlHash == '#goToAboutUs'){
-        console.log('aboutus')
-        $([document.documentElement, document.body]).animate({
-            scrollTop: $("#about_us").offset().top - 175
-        }, 50);
-    }
-})
 </script>
 {% endblock scripts %}

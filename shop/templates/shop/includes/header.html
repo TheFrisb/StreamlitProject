@@ -17,9 +17,9 @@
                 <div class="main-menu f-right d-md-block ">
                     <nav class=""> 
                         <ul id="navigation_desktop"> 
-                            <li><a href="{% url 'shop-home' %}#services" id="goToServices">What we offer?</a></li>   
-                            <li><a href="{% url 'shop-home' %}#pricing" id="goToPricing">Pricing</a></li>                                                                                                                              
-                            <li><a href="{% url 'shop-home' %}#about_us" id="goToAboutUs">About us</a></li>               
+                            <li><a href="{% url 'shop-home' %}#goToServices" id="goToServices">What we offer?</a></li>   
+                            <li><a href="{% url 'shop-home' %}#goToPricing" id="goToPricing">Pricing</a></li>                                                                                                                              
+                            <li><a href="{% url 'shop-home' %}#goToAboutUs" id="goToAboutUs">About us</a></li>               
                             <li><a href="{% url 'blog-home' %}">Blog</a></li>
                             <li><div class="dropdown show">
                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0!important;background-color:transparent!important;color:#101a31!important;">
@@ -27,8 +27,8 @@
                                 </a>
                               
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="#">English</a>
-                                  <a class="dropdown-item" href="#">Spanish</a>
+                                  <a class="dropdown-item" href="{% url 'shop-home' %}">English</a>
+                                  <a class="dropdown-item" href="{% url 'shop-home-latvian' %}">Spanish</a>
                                 </div>
                               </div></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li>

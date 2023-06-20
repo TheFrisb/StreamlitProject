@@ -11,6 +11,7 @@ from . import views # add views to this file
 '''
 urlpatterns = [
     path('', views.home, name='shop-home'), 
+    path('lv/', views.home, name='shop-home-latvian'),
     path('register/confirm/<str:registration_link>/', views.confirm_user, name='confirm_user'), 
     path('register/', views.register_user, name='register_user'), # add register_user url
     path('login/', views.login_user, name='login_user'), 

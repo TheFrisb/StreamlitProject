@@ -20,6 +20,7 @@ stripe.api_key = config('STRIPE_SECRET_KEY')
 def home(request): # this is the view that serves the home page
     #response = requests.get('/login/')
     #print(response)
+    language_code = request.path_info.strip("/").split("/")[0]
     products = Product.objects.all() # this is a queryset, it returns all products
     context = {
         'products': products,
@@ -33,7 +34,10 @@ def home(request): # this is the view that serves the home page
             user_profile.notification = None
             user_profile.save()
         context['user_profile'] = user_profile 
-    return render(request, 'shop/home.html', context) # render the home.html template with the context dictionary
+    if language_code == 'lv':
+        return render(request, 'shop/home_latvian.html', context)
+    else:
+        return render(request, 'shop/home.html', context) # render the home.html template with the context dictionary
 
 
 #create a view that serves a  streamlit dashboard
