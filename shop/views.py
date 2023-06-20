@@ -35,8 +35,10 @@ def home(request): # this is the view that serves the home page
             user_profile.save()
         context['user_profile'] = user_profile 
     if language_code == 'lv':
+        context['english'] = False
         return render(request, 'shop/home_latvian.html', context)
     else:
+        context['english'] = True
         return render(request, 'shop/home.html', context) # render the home.html template with the context dictionary
 
 

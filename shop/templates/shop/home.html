@@ -323,7 +323,7 @@
     let pricing_offset = $("#pricing").offset().top;
     let aboutUs_offset = $("#about_us").offset().top;
     console.log(services_offset, pricing_offset, aboutUs_offset)
-    $("#goToServices").click(function(e){
+    $(".goToServices").click(function(e){
   e.preventDefault();
     let current = $("#services").offset().top;
     if(current < services_offset){
@@ -340,7 +340,7 @@
     }
   
 });
-$("#goToPricing").click(function(e){
+$(".goToPricing").click(function(e){
   e.preventDefault();
   let current = $("#pricing").offset().top;
   if ( current < pricing_offset ){
@@ -355,7 +355,7 @@ $("#goToPricing").click(function(e){
   }
   
 });
-$("#goToAboutUs").click(function(e){
+$(".goToAboutUs").click(function(e){
   e.preventDefault();
   let current = $("#about_us").offset().top;
   if( current < aboutUs_offset ){

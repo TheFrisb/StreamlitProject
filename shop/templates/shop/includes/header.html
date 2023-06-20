@@ -17,9 +17,15 @@
                 <div class="main-menu f-right d-md-block ">
                     <nav class=""> 
                         <ul id="navigation_desktop"> 
-                            <li><a href="{% url 'shop-home' %}#goToServices" id="goToServices">What we offer?</a></li>   
-                            <li><a href="{% url 'shop-home' %}#goToPricing" id="goToPricing">Pricing</a></li>                                                                                                                              
-                            <li><a href="{% url 'shop-home' %}#goToAboutUs" id="goToAboutUs">About us</a></li>               
+                            {% if not english %}
+                            <li><a href="{% url 'shop-home-latvian' %}#goToServices" class="goToServices">What we offer?</a></li>   
+                            <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="goToPricing">Pricing</a></li>                                                                                                                              
+                            <li><a href="{% url 'shop-home-latvian' %}#goToAboutUs" class="goToAboutUs">About us</a></li>   
+                            {% else %}
+                            <li><a href="{% url 'shop-home' %}#goToServices" class="goToServices">What we offer?</a></li>   
+                            <li><a href="{% url 'shop-home' %}#goToPricing" class="goToPricing">Pricing</a></li>                                                                                                                              
+                            <li><a href="{% url 'shop-home' %}#goToAboutUs" class="goToAboutUs">About us</a></li>   
+                            {% endif %}            
                             <li><a href="{% url 'blog-home' %}">Blog</a></li>
                             <li><div class="dropdown show">
                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:0!important;background-color:transparent!important;color:#101a31!important;">
@@ -37,7 +43,11 @@
                                 {% if user_profile.credits_balance > 0 %}
                                 <li><a href="{% url 'dashboard' %}" target="_blank" class="header-btn text-white gotoDashboardHeadernBtn">Go to dashboard</a></li>
                                 {% else %}
-                                <li><a href="{% url 'shop-home' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    {% if not english %}
+                                    <li><a href="{% url 'shop-home-latvian' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'shop-home' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    {% endif %}
                                 {% endif %}
                                 <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>
                             {% else %}

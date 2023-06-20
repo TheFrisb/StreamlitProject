@@ -48,9 +48,15 @@
                             <div class="footer-tittle">
                                 <h4>Our solutions</h4>
                                 <ul>
-                                    <li><a href="{% url 'shop-home' %}#services">What we offer?</a></li>                                                                                                                                 
-                                    <li><a href="{% url 'shop-home' %}#about_us">About us</a></li>
-                                    <li><a href="{% url 'shop-home' %}#pricing">Pricing</a></li>
+                                    {% if not english %}
+                                    <li><a href="{% url 'shop-home-latvian' %}#goToServices" class="goToServices">What we offer?</a></li>                                                                                                                                 
+                                    <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="goToPricing">About us</a></li>
+                                    <li><a href="{% url 'shop-home-latvian' %}#goToAboutUs" class="goToAboutUs">Pricing</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'shop-home' %}#goToServices" class="goToServices">What we offer?</a></li>                                                                                                                                 
+                                    <li><a href="{% url 'shop-home' %}#goToPricing" class="goToPricing">About us</a></li>
+                                    <li><a href="{% url 'shop-home' %}#goToAboutUs" class="goToAboutUs">Pricing</a></li>
+                                    {% endif %}
                                     <li><a href="{% url 'blog-home' %}">Blog</a></li>
                                     <li><a href="{% url 'blog-home' %}#main-contact-form">Contact</a></li>
                                 </ul>

@@ -31,6 +31,7 @@ def home(request):
         'blog_posts': blog_posts_paginated,
         'blog_categories': blog_categories,
         'recent_posts': recent_posts,
+        'english': True,
     }
     return render(request, 'blog/home.html', context)
 
@@ -50,6 +51,7 @@ def blog_category_view(request, string):
         'blog_categories': blog_categories,
         'active_category': blog_category.name,
         'recent_posts': recent_posts,
+        'english': True,
     }
     return render(request, 'blog/home.html', context)
 
@@ -70,6 +72,7 @@ def blog_search_view(request):
         'blog_categories': blog_categories,
         'active_category': 'Search Results',
         'recent_posts': recent_posts,
+        'english': True,
 
     }
     return render(request, 'blog/home.html', context)
@@ -96,6 +99,7 @@ def blog_detail_view(request, pk):
         'recent_posts': recent_posts,
         'next_post': next_post,
         'previous_post': previous_post,
+        'english': True,
     }
     return render(request, 'blog/blog_detail_view.html', context)
 
