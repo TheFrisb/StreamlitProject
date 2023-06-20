@@ -319,23 +319,55 @@
 {% endblock content %}
 {% block scripts %}
 <script>
+    let services_offset = $("#services").offset().top;
+    let pricing_offset = $("#pricing").offset().top;
+    let aboutUs_offset = $("#about_us").offset().top;
+    console.log(services_offset, pricing_offset, aboutUs_offset)
     $("#goToServices").click(function(e){
   e.preventDefault();
-  $([document.documentElement, document.body]).animate({
-      scrollTop: $("#services").offset().top - 40
-  }, 50);
+    let current = $("#services").offset().top;
+    if(current < services_offset){
+        console.log('yeah')
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#services").offset().top - 40
+        }, 50);
+    }
+    else{
+        console.log('same')
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#services").offset().top - 120
+        }, 50);
+    }
+  
 });
 $("#goToPricing").click(function(e){
   e.preventDefault();
-  $([document.documentElement, document.body]).animate({
-      scrollTop: $("#pricing").offset().top - 40
-  }, 50);
+  let current = $("#pricing").offset().top;
+  if ( current < pricing_offset ){
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#pricing").offset().top - 40
+    }, 50);
+  }
+  else{
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#pricing").offset().top - 120
+    }, 50);
+  }
+  
 });
 $("#goToAboutUs").click(function(e){
   e.preventDefault();
-  $([document.documentElement, document.body]).animate({
-      scrollTop: $("#about_us").offset().top - 95
-  }, 50);
+  let current = $("#about_us").offset().top;
+  if( current < aboutUs_offset ){
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#about_us").offset().top - 95
+    }, 50);
+  }
+  else{
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $("#about_us").offset().top - 175
+    }, 50);
+  }
 });
 $(window).on('load', function () {
     var urlHash = window.location.hash;
