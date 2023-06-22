@@ -190,6 +190,7 @@ DEFAULT_FROM_EMAIL = config('default_from_mail')
 
 CRONJOBS = [ # cron job to remove expired tokens
     ('0 * * * *', 'shop.cron.remove_tokens'),
+    ('0 1 * * *', 'shop.cron.deactivate_expired_coupons')
 ]
 
 

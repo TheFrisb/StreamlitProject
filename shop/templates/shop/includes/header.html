@@ -18,13 +18,15 @@
                     <nav class=""> 
                         <ul id="navigation_desktop"> 
                             {% if not english %}
+                            <li><a href="{% url 'shop-home-latvian' %}#goToAboutUs" class="goToAboutUs">About us</a></li>  
                             <li><a href="{% url 'shop-home-latvian' %}#goToServices" class="goToServices">What we offer?</a></li>   
                             <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="goToPricing">Pricing</a></li>                                                                                                                              
-                            <li><a href="{% url 'shop-home-latvian' %}#goToAboutUs" class="goToAboutUs">About us</a></li>   
+                             
                             {% else %}
+                            <li><a href="{% url 'shop-home' %}#goToAboutUs" class="goToAboutUs">About us</a></li>   
                             <li><a href="{% url 'shop-home' %}#goToServices" class="goToServices">What we offer?</a></li>   
                             <li><a href="{% url 'shop-home' %}#goToPricing" class="goToPricing">Pricing</a></li>                                                                                                                              
-                            <li><a href="{% url 'shop-home' %}#goToAboutUs" class="goToAboutUs">About us</a></li>   
+                            
                             {% endif %}            
                             <li><a href="{% url 'blog-home' %}">Blog</a></li>
                             <li><div class="dropdown show">
@@ -44,9 +46,9 @@
                                 <li><a href="{% url 'dashboard' %}" target="_blank" class="header-btn text-white gotoDashboardHeadernBtn">Go to dashboard</a></li>
                                 {% else %}
                                     {% if not english %}
-                                    <li><a href="{% url 'shop-home-latvian' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
                                     {% else %}
-                                    <li><a href="{% url 'shop-home' %}#pricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    <li><a href="{% url 'shop-home' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
                                     {% endif %}
                                 {% endif %}
                                 <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>

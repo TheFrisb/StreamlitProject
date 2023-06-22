@@ -32,7 +32,9 @@ class RegistrationLink(models.Model): # this is a model that will be used to gen
 class Coupon(models.Model): # coupon class
     name = models.CharField(max_length=50)
     percentage_off = models.IntegerField(default=20)
+    end_date = models.DateField(null=True,blank=True, verbose_name='End Date')
     is_active = models.BooleanField(default=True, verbose_name='Select if this coupon should be active')
+    
 
     @property
     def get_discount(self):

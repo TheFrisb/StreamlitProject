@@ -1,4 +1,4 @@
-from .models import UserProfile
+from .models import UserProfile, Coupon
 from django.utils import timezone
 from datetime import timedelta
 
@@ -11,3 +11,9 @@ def remove_tokens(): # function that removes tokens older than 6 hours.
     for user_profile in user_profiles:
         user_profile.streamlit_token = None
         user_profile.save()
+
+
+def deactivate_expired_coupons():
+    today = timezone.now().date()
+    expired_coupons = Coupon.objects.filter(end_date=today, is_active=True)
+    expired_coupons.update(is_active=False)

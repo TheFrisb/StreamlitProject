@@ -564,11 +564,18 @@ $(document).on('click', '#show_change_password_form_btn', function (e) {
 $('#loginModal').on('shown.bs.modal', function () {
   $('#login_email').focus();
   $('body').addClass('modal-open');
+  $(document).on('keyup.login', function(event) {
+    if (event.key == 'Enter') {
+        $('#loginBtn').click();
+    }
+    
+});
 });
 
 // detect when loginModal is hidden
 $('#loginModal').on('hidden.bs.modal', function () {
   $('body').removeClass('modal-open');
+  $(document).off('keyup.login');
 });
 
 $(document).on("click", '#register-link', function (e) {
