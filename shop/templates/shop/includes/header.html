@@ -107,7 +107,7 @@
                 <span style="color: #be9278" class="fw-semibold">You can not see the dashboard please buy a plan</span>
                 {% if not english %}
                     {% if 'blog' in request.path %}
-                        <a href="{% url 'shop-home' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing">Buy plan</a>
+                        <a href="{% url 'shop-home-latvian' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing">Buy plan</a>
                     {% else %}
                         <a href="{% url 'shop-home-latvian' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing" data-dismiss="modal" aria-label="Close2">Buy plan</a>
                     {% endif %}
