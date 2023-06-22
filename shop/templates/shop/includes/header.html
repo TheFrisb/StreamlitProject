@@ -36,7 +36,7 @@
                               
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                   <a class="dropdown-item" href="{% url 'shop-home' %}">English</a>
-                                  <a class="dropdown-item" href="{% url 'shop-home-latvian' %}">Spanish</a>
+                                  <a class="dropdown-item" href="{% url 'shop-home-latvian' %}">Latvian</a>
                                 </div>
                               </div></li>
                             <li><div class="g-signin2" data-onsuccess="onSignIn"></div></li>
@@ -46,9 +46,9 @@
                                 <li><a href="{% url 'dashboard' %}" target="_blank" class="header-btn text-white gotoDashboardHeadernBtn">Go to dashboard</a></li>
                                 {% else %}
                                     {% if not english %}
-                                    <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    <li><a href="{% url 'shop-home-latvian' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn goToPricing">Buy dashboard credits</a></li>
                                     {% else %}
-                                    <li><a href="{% url 'shop-home' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn">Buy dashboard credits</a></li>
+                                    <li><a href="{% url 'shop-home' %}#goToPricing" class="header-btn text-white gotoDashboardHeadernBtn goToPricing">Buy dashboard credits</a></li>
                                     {% endif %}
                                 {% endif %}
                                 <li><a href="#" class="header-btn text-white" data-toggle="modal" data-target="#loginModal">My account</a></li>
@@ -105,7 +105,18 @@
                 <a href="{% url 'dashboard' %}" target="_blank" class="btn btn-primary m-1 rounded standardBtn">Go to dashboard</a>
             {% else %}
                 <span style="color: #be9278" class="fw-semibold">You can not see the dashboard please buy a plan</span>
-                <a href="{% url 'shop-home' %}#pricing" class="btn btn-primary m-1 rounded standardBtn">Buy plan</a>
+                {% if not english %}
+                    {% if 'blog' in request.path %}
+                    {% else %}
+                        <a href="{% url 'shop-home-latvian' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing" data-dismiss="modal" aria-label="Close2">Buy plan</a>
+                    {% endif %}
+                {% else %}
+                    {% if 'blog' in request.path %}
+                        <a href="{% url 'shop-home' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing">Buy plan</a>
+                    {% else %}
+                        <a href="{% url 'shop-home' %}#goToPricing" class="btn btn-primary m-1 rounded standardBtn goToPricing" data-dismiss="modal" aria-label="Close2">Buy plan</a>
+                    {% endif %}
+                {% endif %}
             {% endif %}
             
             <!-- Change password, hidden with class d-none -->
