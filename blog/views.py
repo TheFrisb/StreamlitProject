@@ -25,7 +25,7 @@ def home(request):
     paginator = Paginator(blog_posts, 12) # Show 12 blog posts per page.
     page_number = request.GET.get('page') # this gets the page number from the url
     blog_posts_paginated = paginator.get_page(page_number) # this paginates the blog posts queryset
-
+    
     context = {
         'title': 'Blog Home',
         'blog_posts': blog_posts_paginated,
@@ -33,6 +33,14 @@ def home(request):
         'recent_posts': recent_posts,
         'english': True,
     }
+    if request.user.is_authenticated: # check if the user is logged in
+        user_profile = UserProfile.objects.get(user=request.user) # get the user profile of the logged in user
+        print(user_profile.notification)
+        if user_profile.notification is not None:
+            context['notification'] = user_profile.notification
+            user_profile.notification = None
+            user_profile.save()
+        context['user_profile'] = user_profile 
     return render(request, 'blog/home.html', context)
 
 
@@ -53,6 +61,14 @@ def blog_category_view(request, string):
         'recent_posts': recent_posts,
         'english': True,
     }
+    if request.user.is_authenticated: # check if the user is logged in
+        user_profile = UserProfile.objects.get(user=request.user) # get the user profile of the logged in user
+        print(user_profile.notification)
+        if user_profile.notification is not None:
+            context['notification'] = user_profile.notification
+            user_profile.notification = None
+            user_profile.save()
+        context['user_profile'] = user_profile 
     return render(request, 'blog/home.html', context)
 
 
@@ -75,6 +91,14 @@ def blog_search_view(request):
         'english': True,
 
     }
+    if request.user.is_authenticated: # check if the user is logged in
+        user_profile = UserProfile.objects.get(user=request.user) # get the user profile of the logged in user
+        print(user_profile.notification)
+        if user_profile.notification is not None:
+            context['notification'] = user_profile.notification
+            user_profile.notification = None
+            user_profile.save()
+        context['user_profile'] = user_profile 
     return render(request, 'blog/home.html', context)
 
 
@@ -101,6 +125,14 @@ def blog_detail_view(request, pk):
         'previous_post': previous_post,
         'english': True,
     }
+    if request.user.is_authenticated: # check if the user is logged in
+        user_profile = UserProfile.objects.get(user=request.user) # get the user profile of the logged in user
+        print(user_profile.notification)
+        if user_profile.notification is not None:
+            context['notification'] = user_profile.notification
+            user_profile.notification = None
+            user_profile.save()
+        context['user_profile'] = user_profile 
     return render(request, 'blog/blog_detail_view.html', context)
 
 
